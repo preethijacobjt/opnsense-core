@@ -93,9 +93,7 @@
                 <FieldSeparator>,</FieldSeparator>
                 <AsList>Y</AsList>
             </hwaddr>
-            <lease_time type="IntegerField">
-                <MinimumValue>1</MinimumValue>
-            </lease_time>
+            <lease_time type="IntegerField"/>
             <ignore type="BooleanField"/>
             <set_tag type="ModelRelationField">
                 <Model>
@@ -187,9 +185,7 @@
                 <MinimumValue>1</MinimumValue>
                 <MaximumValue>64</MaximumValue>
             </prefix_len>
-            <lease_time type="IntegerField">
-                <MinimumValue>1</MinimumValue>
-            </lease_time>
+            <lease_time type="IntegerField"/>
             <domain type="HostnameField">
                 <IsDNSName>Y</IsDNSName>
                 <IpAllowed>N</IpAllowed>
@@ -265,6 +261,14 @@
             <description type="DescriptionField"/>
         </dhcp_options>
         <dhcp_boot type="ArrayField">
+            <interface type="InterfaceField">
+                <BlankDesc>Any</BlankDesc>
+                <Filters>
+                    <if>/^(?!lo0$).*/</if>
+                    <type>/(?s)^((?!group).)*$/</type>
+                </Filters>
+                <AllowDynamic>Y</AllowDynamic>
+            </interface>
             <tag type="ModelRelationField">
                 <Model>
                     <tag>
@@ -273,6 +277,7 @@
                         <display>tag</display>
                     </tag>
                 </Model>
+                <Multiple>Y</Multiple>
             </tag>
             <filename type="TextField"/>
             <servername type="TextField"/>

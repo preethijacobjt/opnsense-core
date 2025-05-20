@@ -32,6 +32,12 @@
             $("#grid-leases").bootgrid('reload');
         })
 
+        let selected_protocol = "";
+        $('#protocol-selection').change(function () {
+            selected_protocol = $(this).val();
+            $('#grid-leases').bootgrid('reload');
+        });
+
         $("#grid-leases").UIBootgrid({
             search:'/api/dnsmasq/leases/search/',
             options: {
@@ -40,6 +46,7 @@
                 useRequestHandlerOnGet: true,
                 requestHandler: function(request) {
                     request['selected_interfaces'] = selected_interfaces;
+                    request['selected_protocol'] = selected_protocol;
                     return request;
                 },
                 responseHandler: function (response) {
@@ -78,6 +85,7 @@
         });
 
         $("#interface-selection-wrapper").detach().prependTo('#grid-leases-header > .row > .actionBar > .actions');
+        $("#protocol-selection-wrapper").detach().insertBefore("#interface-selection-wrapper");
 
         updateServiceControlUI('dnsmasq');
     });
@@ -94,7 +102,14 @@
 <ul class="nav nav-tabs" data-tabs="tabs" id="maintabs"></ul>
 <div class="tab-content content-box col-xs-12 __mb">
     <div class="btn-group" id="interface-selection-wrapper">
-        <select class="selectpicker" multiple="multiple" data-live-search="true" id="interface-selection" data-width="auto" title="All Interfaces">
+        <select class="selectpicker" multiple="multiple" data-live-search="true" id="interface-selection" data-width="auto" title="{{ lang._('All Interfaces') }}">
+        </select>
+    </div>
+    <div class="btn-group" id="protocol-selection-wrapper">
+        <select class="selectpicker" id="protocol-selection" data-width="auto">
+            <option value="">{{ lang._('IPv4/IPv6') }}</option>
+            <option value="ipv4">{{ lang._('IPv4') }}</option>
+            <option value="ipv6">{{ lang._('IPv6') }}</option>
         </select>
     </div>
     <table id="grid-leases" class="table table-condensed table-hover table-striped table-responsive">
@@ -103,6 +118,8 @@
                 <th data-column-id="if_descr" data-type="string">{{ lang._('Interface') }}</th>
                 <th data-column-id="address" data-identifier="true" data-type="string" data-formatter="overflowformatter">{{ lang._('IP Address') }}</th>
                 <th data-column-id="hwaddr" data-type="string" data-formatter="macformatter" data-width="9em">{{ lang._('MAC Address') }}</th>
+                <th data-column-id="iaid" data-type="string" data-width="9em">{{ lang._('IAID') }}</th>
+                <th data-column-id="client_id" data-type="string" data-formatter="overflowformatter">{{ lang._('DUID') }}</th>
                 <th data-column-id="expire" data-type="string" data-formatter="timestamp">{{ lang._('Expire') }}</th>
                 <th data-column-id="hostname" data-type="string" data-formatter="overflowformatter">{{ lang._('Hostname') }}</th>
             </tr>
