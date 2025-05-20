@@ -1,0 +1,342 @@
+<form>
+    <field>
+        <id>rule.enabled</id>
+        <label>Enabled</label>
+        <type>checkbox</type>
+        <help>Enable this rule</help>
+    </field>
+    <field>
+        <id>rule.sequence</id>
+        <label>Sequence</label>
+        <type>text</type>
+    </field>
+    <field>
+        <id>rule.action</id>
+        <label>Action</label>
+        <type>dropdown</type>
+        <help>Choose what to do with packets that match the criteria specified below.
+Hint: the difference between block and reject is that with reject, a packet (TCP RST or ICMP port unreachable for UDP) is returned to the sender, whereas with block the packet is dropped silently. In either case, the original packet is discarded.</help>
+    </field>
+    <field>
+        <id>rule.quick</id>
+        <label>Quick</label>
+        <type>checkbox</type>
+        <help><![CDATA[<b>Apply the action immediately on match. </b>If a packet matches a rule specifying quick, then that rule is considered the last matching rule and the specified action is taken. When a rule does not have quick enabled, the last matching rule wins.]]></help>
+    </field>
+    <field>
+        <id>rule.interface_invert</id>
+        <label>Interface / Invert</label>
+        <type>checkbox</type>
+        <help><![CDATA[<b>Use this option to invert the sense of the match. </b>Use all but selected interfaces.]]></help>
+    </field>
+    <field>
+        <id>rule.interface</id>
+        <label>Interface</label>
+        <type>select_multiple</type>
+        <help>Choose on which interface packets must come in to match this rule.</help>
+    </field>
+    <field>
+        <id>rule.direction</id>
+        <label>Direction</label>
+        <type>dropdown</type>
+        <help>Direction of the traffic. Traffic IN is coming into the firewall interface, while traffic OUT is going out of the firewall interface. In visual terms: [Source] -> IN -> [Firewall] -> OUT -> [Destination]. The default policy is to filter inbound traffic, which means the policy applies to the interface on which the traffic is originally received by the firewall from the source. This is more efficient from a traffic processing perspective. In most cases, the default policy will be the most appropriate.</help>
+    </field>
+    <field>
+        <id>rule.ipprotocol</id>
+        <label>TCP/IP Version</label>
+        <type>dropdown</type>
+        <help>Select the Internet Protocol version this rule applies to.</help>
+    </field>
+    <field>
+        <id>rule.protocol</id>
+        <label>Protocol</label>
+        <type>dropdown</type>
+        <style>protocol</style>
+        <help>Choose which IP protocol this rule should match.
+Hint: in most cases, you should specify TCP here.</help>
+    </field>
+    <field>
+        <id>rule.icmp_type</id>
+        <label>ICMP Type</label>
+        <type>dropdown</type>
+        <style>icmp_type</style>
+        <help>If you selected ICMP for the protocol above, you may specify an ICMP type here.</help>
+    </field>
+    <field>
+        <id>rule.icmp6_type</id>
+        <label>ICMP6 Type</label>
+        <type>dropdown</type>
+        <style>icmp6_type</style>
+        <help>If you selected ICMP6 for the protocol above, you may specify an ICMP6 type here.</help>
+    </field>
+    <field>
+        <id>rule.source_not</id>
+        <label>Source / Invert</label>
+        <type>checkbox</type>
+        <help>Use this option to invert the sense of the match.</help>
+    </field>
+    <field>
+        <id>rule.source_net</id>
+        <label>Source</label>
+        <type>dropdown</type>
+        <style>net_selector</style>
+    </field>
+    <field>
+        <id>rule.source_port</id>
+        <label>Source Port</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help><![CDATA[Specify the source port or port range for this rule. <b>This is usually random and almost never equal to the destination port range (and should usually be 'any').</b>]]></help>
+    </field>
+    <field>
+        <id>rule.destination_not</id>
+        <label>Destination / Inverts</label>
+        <type>checkbox</type>
+        <help>Use this option to invert the sense of the match.</help>
+    </field>
+    <field>
+        <id>rule.destination_net</id>
+        <label>Destination</label>
+        <type>dropdown</type>
+        <style>net_selector</style>
+    </field>
+    <field>
+        <id>rule.destination_port</id>
+        <label>Destination Port</label>
+        <type>text</type>
+        <help>Specify the port or port range for the destination of the packet for this mapping.</help>
+    </field>
+    <field>
+        <id>rule.log</id>
+        <label>Log</label>
+        <type>checkbox</type>
+        <help><![CDATA[Log packets that are handled by this rule. Hint: The firewall has limited local log space. Don't turn on logging for everything. If you want to do a lot of logging, consider using a <a href="/ui/syslog/" target="_blank">remote syslog server</a>.]]></help>
+    </field>
+    <field>
+        <id>rule.categories</id>
+        <label>Categories</label>
+        <type>select_multiple</type>
+        <style>tokenize</style>
+        <help>You may enter or select a category here to group firewall rules (not parsed).</help>
+    </field>
+    <field>
+        <id>rule.description</id>
+        <label>Description</label>
+        <type>text</type>
+        <help>You may enter a description here for your reference (not parsed).</help>
+    </field>
+    <field>
+        <id>rule.no_xmlrpc_sync</id>
+        <label>No XMLRPC Sync</label>
+        <type>checkbox</type>
+        <help>Hint: This prevents the rule on Master from automatically syncing to other CARP members. This does NOT prevent the rule from being overwritten on Slave.</help>
+    </field>
+    <field>
+        <id>rule.schedule</id>
+        <label>Schedule</label>
+        <type>dropdown</type>
+        <help>Leave as 'none' to leave the rule enabled all the time.</help>
+    </field>
+    <field>
+        <id>rule.gateway</id>
+        <label>Gateway</label>
+        <type>dropdown</type>
+        <help>Leave as 'default' to use the system routing table. Or choose a gateway to utilize policy based routing.</help>
+    </field>
+    <field>
+        <id>rule.traffic_shaping</id>
+        <label>Traffic Shaping [Experimental] - Rule Direction</label>
+        <type>dropdown</type>
+        <help>Shape packets using the selected pipe or queue.</help>
+    </field>
+    <field>
+        <id>rule.traffic_shaping_reverse</id>
+        <label>Traffic Shaping [Experimental] - Reverse Direction</label>
+        <type>dropdown</type>
+        <help>Shape packets using the selected pipe or queue.</help>
+    </field>
+    <field>
+        <type>header</type>
+        <label>Advanced Features</label>
+        <advanced>true</advanced>
+        <collapse>true</collapse>
+    </field>
+    <field>
+        <id>rule.allow_options</id>
+        <label>Allow Options</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>This allows packets with IP options to pass. Otherwise they are blocked by default. This is usually only seen with multicast traffic.</help>
+    </field>
+    <field>
+        <id>rule.reply_to</id>
+        <label>Reply To</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Determines how packets route back in the opposite direction (replies), when set to default, packets on WAN type interfaces reply to their connected gateway on the interface (unless globally disabled). A specific gateway may be chosen as well here. This setting is only relevant in the context of a state, for stateless rules there is no defined opposite direction.</help>
+    </field>
+    <field>
+        <id>rule.set_priority_all</id>
+        <label>Set Priority (All Packets)</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Set the priority code point in a 802.1Q VLAN header for packets matching this rule. If both priorities are set here, packets with a TOS of "lowdelay" or TCP ACKs with no data payload will be assigned the latter.</help>
+    </field>
+    <field>
+        <id>rule.set_priority_low</id>
+        <label>Set Priority (Low Delay/TCP ACK)</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Set the priority code point in a 802.1Q VLAN header for packets matching this rule. If both priorities are set here, packets with a TOS of "lowdelay" or TCP ACKs with no data payload will be assigned the latter.</help>
+    </field>
+    <field>
+        <id>rule.match_priority</id>
+        <label>Match Priority</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Only match packets which have the given queueing priority assigned.</help>
+    </field>
+    <field>
+        <id>rule.match_tos_dscp</id>
+        <label>Match TOS / DSCP</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Only match packets which have the given TOS/DSCP value assigned.</help>
+    </field>
+    <field>
+        <id>rule.set_tag</id>
+        <label>Set Local Tag</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>You can mark a packet matching this rule and use this mark to match on other NAT/filter rules.</help>
+    </field>
+    <field>
+        <id>rule.match_tag</id>
+        <label>Match Local Tag</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>You can match packet on a mark placed before on another rule.</help>
+    </field>
+    <field>
+        <id>rule.max_states</id>
+        <label>Max States</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum state entries this rule can create.</help>
+    </field>
+    <field>
+        <id>rule.max_source_nodes</id>
+        <label>Max Source Nodes</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum number of unique source hosts.</help>
+    </field>
+    <field>
+        <id>rule.max_established</id>
+        <label>Max Established</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum number of established connections per host (TCP only).</help>
+    </field>
+    <field>
+        <id>rule.max_source_states</id>
+        <label>Max Source States</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum state entries per host.</help>
+    </field>
+    <field>
+        <id>rule.max_new_connections</id>
+        <label>Max New Connections</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>Maximum new connections per host / per second(s) and overload table to use (TCP only), the default virusprot table comes with a default block rule in floating rules.</help>
+    </field>
+    <field>
+        <id>rule.state_timeout</id>
+        <label>State Timeout</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help>State Timeout in seconds (TCP only).</help>
+    </field>
+    <field>
+        <id>rule.adaptive_timeouts_start</id>
+        <label>Adaptive Timeouts [Start]</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help><![CDATA[Timeouts for states can be scaled adaptively as the number of state table entries grows.
+<br/><br/>
+<b>start</b><br/>
+When the number of state entries exceeds this value, adaptive scaling begins. All timeout values are scaled linearly with factor (adaptive.end - number of states) / (adaptive.end - adaptive.start).
+<br/><br/>
+<b>end</b><br/>
+When reaching this number of state entries, all timeout values become zero, effectively purging all state entries immediately. This value is used to define the scale factor, it should not actually be reached (set a lower state limit).
+<br/><br/>
+<b>Note:</b> Leave fields blank to use default pf algorithm. Set to 0 to disable.]]></help>
+    </field>
+    <field>
+        <id>rule.adaptive_timeouts_end</id>
+        <label>Adaptive Timeouts [End]</label>
+        <type>text</type>
+        <advanced>true</advanced>
+        <help><![CDATA[Timeouts for states can be scaled adaptively as the number of state table entries grows.
+<br/><br/>
+<b>start</b><br/>
+When the number of state entries exceeds this value, adaptive scaling begins. All timeout values are scaled linearly with factor (adaptive.end - number of states) / (adaptive.end - adaptive.start).
+<br/><br/>
+<b>end</b><br/>
+When reaching this number of state entries, all timeout values become zero, effectively purging all state entries immediately. This value is used to define the scale factor, it should not actually be reached (set a lower state limit).
+<br/><br/>
+<b>Note:</b> Leave fields blank to use default pf algorithm. Set to 0 to disable.]]></help>
+    </field>
+    <field>
+        <id>rule.tcp_flags_set</id>
+        <label>TCP Flags [Set]</label>
+        <type>text</type>
+        <type>select_multiple</type>
+        <advanced>true</advanced>
+        <help>Use this to choose TCP flags that must be set or cleared for this rule to match.</help>
+    </field>
+    <field>
+        <id>rule.tcp_flags_out_of</id>
+        <label>TCP Flags [Out Of]</label>
+        <type>text</type>
+        <type>select_multiple</type>
+        <advanced>true</advanced>
+        <help>Use this to choose TCP flags that must be set or cleared for this rule to match.</help>
+    </field>
+    <field>
+        <id>rule.source_os</id>
+        <label>Source OS</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help><![CDATA[<b>OS Type:</b><br/>
+Note: this only works for TCP rules. General OS choice matches all subtypes.]]></help>
+    </field>
+    <field>
+        <id>rule.no_pfsync</id>
+        <label>State Type / NO Pfsync</label>
+        <type>checkbox</type>
+        <advanced>true</advanced>
+        <help>Hint: This prevents states created by this rule to be sync'ed over pfsync.</help>
+    </field>
+    <field>
+        <id>rule.state_type</id>
+        <label>State Type</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help><![CDATA[Hint: Select which type of state tracking mechanism you would like to use. If in doubt, use keep state.
+<ul><li><b>Keep state</b> is used for stateful connection tracking.</li>
+<li><b>Sloppy state</b> works like keep state, but it does not check sequence numbers. Use it when the firewall does not see all packets.</li>
+<li><b>Synproxy state</b> proxies incoming TCP connections to help protect servers from spoofed TCP SYN floods. This option includes the functionality of keep state and modulate state combined.</li>
+<li><b>None:</b> Do not use state mechanisms to keep track. This is only useful if you're doing advanced queueing in certain situations. Please check the documentation.</li></ul>
+Source and more information can be found <a href="https://www.freebsd.org/cgi/man.cgi?query=pf.conf&sektion=5">here</a>.]]></help>
+    </field>
+    <field>
+        <id>rule.state_policy</id>
+        <label>State Policy</label>
+        <type>dropdown</type>
+        <advanced>true</advanced>
+        <help>Choose how states created by this rule are treated, default (as defined in advanced), floating in which case states are valid on all interfaces or interface bound. Interface bound states are more secure, floating more flexible.</help>
+    </field>
+</form>

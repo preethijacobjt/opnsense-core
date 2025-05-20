@@ -91,6 +91,7 @@ foreach ($fw->iterateFilterRules() as $prio => $item) {
          **/
         $rule['sort_order'] = sprintf("%06d.1%06d", $prio, $sequence++);
         $rule['legacy'] = true;
+        $rule['rule_type'] = $item->ruleOrigin();
         $rules[] = $rule;
     }
 }

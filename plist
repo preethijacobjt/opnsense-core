@@ -307,6 +307,7 @@
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/Api/OneToOneController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/Api/OutboundController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/Api/PortForwardController.php
+/usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/Api/RulesController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/Api/SourceNatController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/CategoryController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/FilterController.php
@@ -315,9 +316,11 @@
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/OneToOneController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/OutboundController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/PortForwardController.php
+/usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/RulesController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/SourceNatController.php
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/categoryEdit.xml
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/dialogFilterRule.xml
+/usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/dialogFirewallRule.xml
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/dialogNptRule.xml
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/dialogOneToOneRule.xml
 /usr/local/opnsense/mvc/app/controllers/OPNsense/Firewall/forms/dialogOutboundRule.xml
@@ -931,6 +934,7 @@
 /usr/local/opnsense/mvc/app/views/OPNsense/Firewall/filter_rule.volt
 /usr/local/opnsense/mvc/app/views/OPNsense/Firewall/group.volt
 /usr/local/opnsense/mvc/app/views/OPNsense/Firewall/outbound.volt
+/usr/local/opnsense/mvc/app/views/OPNsense/Firewall/rules.volt
 /usr/local/opnsense/mvc/app/views/OPNsense/IDS/index.volt
 /usr/local/opnsense/mvc/app/views/OPNsense/IDS/policy.volt
 /usr/local/opnsense/mvc/app/views/OPNsense/IPsec/connections.volt
